@@ -1,0 +1,49 @@
+[gd_scene load_steps=7 format=3 uid="uid://difa5lfdvlmvr"]
+
+[ext_resource type="Texture2D" uid="uid://diqvgdg407u2m" path="res://icon.svg" id="1_bds5m"]
+[ext_resource type="Script" path="res://snake.gd" id="1_xbwgh"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xm6be"]
+atlas = ExtResource("1_bds5m")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_h7u0a"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xm6be")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kb5qm"]
+radius = 6.08276
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7x2kd"]
+radius = 37.0135
+
+[node name="snake" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 8
+script = ExtResource("1_xbwgh")
+SPEED = null
+JUMP_VELOCITY = null
+move_range = null
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.109375, 0.109375)
+sprite_frames = SubResource("SpriteFrames_h7u0a")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_kb5qm")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_7x2kd")
+
+[node name="WanderTimer" type="Timer" parent="."]
+one_shot = true

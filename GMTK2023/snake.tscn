@@ -1,0 +1,160 @@
+[gd_scene load_steps=23 format=3 uid="uid://difa5lfdvlmvr"]
+
+[ext_resource type="Texture2D" uid="uid://diqvgdg407u2m" path="res://icon.svg" id="1_bds5m"]
+[ext_resource type="Script" path="res://snake.gd" id="1_xbwgh"]
+[ext_resource type="Texture2D" uid="uid://dpgtc8jcqrpsr" path="res://SnakeIdle.png" id="3_lxuie"]
+[ext_resource type="Texture2D" uid="uid://nak7xc8px1ct" path="res://SnakeWalk.png" id="4_8q4rt"]
+[ext_resource type="Texture2D" uid="uid://b3pb6js1u5pnk" path="res://SnakeIdleHealed.png" id="5_olouv"]
+[ext_resource type="Texture2D" uid="uid://u3l8kpm114xr" path="res://SnakeWalkHealed.png" id="6_uagrx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xm6be"]
+atlas = ExtResource("1_bds5m")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yil0h"]
+atlas = ExtResource("3_lxuie")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sf03o"]
+atlas = ExtResource("3_lxuie")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tbo1c"]
+atlas = ExtResource("4_8q4rt")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c2kg8"]
+atlas = ExtResource("4_8q4rt")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ua4ld"]
+atlas = ExtResource("4_8q4rt")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6pcov"]
+atlas = ExtResource("4_8q4rt")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_h7u0a"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xm6be")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yil0h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sf03o")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tbo1c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c2kg8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ua4ld")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6pcov")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s574q"]
+atlas = ExtResource("5_olouv")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wb4hi"]
+atlas = ExtResource("5_olouv")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5hqir"]
+atlas = ExtResource("6_uagrx")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nxmba"]
+atlas = ExtResource("6_uagrx")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kq3se"]
+atlas = ExtResource("6_uagrx")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_biabt"]
+atlas = ExtResource("6_uagrx")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_m0tvt"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s574q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wb4hi")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5hqir")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nxmba")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kq3se")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_biabt")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kb5qm"]
+radius = 6.08276
+
+[node name="snake" type="CharacterBody2D" groups=["enemies"]]
+collision_layer = 2
+collision_mask = 8
+script = ExtResource("1_xbwgh")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_h7u0a")
+animation = &"idle"
+frame_progress = 0.970246
+
+[node name="AnimatedSprite2DHealed" type="AnimatedSprite2D" parent="."]
+visible = false
+sprite_frames = SubResource("SpriteFrames_m0tvt")
+animation = &"walk"
+frame_progress = 0.453894
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_kb5qm")
+
+[node name="WanderTimer" type="Timer" parent="."]
+one_shot = true
