@@ -1,48 +1,154 @@
-[gd_scene load_steps=6 format=3 uid="uid://c6wudh5nsam1v"]
+[gd_scene load_steps=16 format=3 uid="uid://c6wudh5nsam1v"]
 
+[ext_resource type="Script" path="res://aasdasdasd.gd" id="1_ehy7c"]
 [ext_resource type="PackedScene" uid="uid://bku4akkrwirnp" path="res://player.tscn" id="1_plng0"]
-[ext_resource type="PackedScene" uid="uid://difa5lfdvlmvr" path="res://snake.tscn" id="2_isnbl"]
+[ext_resource type="AudioStream" uid="uid://dk5v5yk3v4jtv" path="res://sounds/angySlime.mp3" id="2_ql6sq"]
 [ext_resource type="PackedScene" uid="uid://bfuielbxy7yor" path="res://campfire.tscn" id="3_6x1rv"]
+[ext_resource type="AudioStream" uid="uid://b301kdv0i2xg4" path="res://sounds/slimeCharge7.mp3" id="3_dvev2"]
 [ext_resource type="PackedScene" uid="uid://m6y7aexld0yo" path="res://wall.tscn" id="4_l6vtk"]
-[ext_resource type="Texture2D" uid="uid://co8sbvyv2j4io" path="res://Fence.png" id="5_yjy37"]
+[ext_resource type="PackedScene" uid="uid://4vunsm57g0u4" path="res://bat.tscn" id="5_jrmwn"]
+[ext_resource type="PackedScene" uid="uid://chwvrhjskln4s" path="res://enemy_wall.tscn" id="6_k3g5g"]
+[ext_resource type="PackedScene" uid="uid://ce4c4ytxfrldh" path="res://door.tscn" id="7_bigac"]
+[ext_resource type="Texture2D" uid="uid://bltptkx4fwgqn" path="res://Background.png" id="10_hyugq"]
+[ext_resource type="PackedScene" uid="uid://cr3fnhg7dlgkn" path="res://progress_bar.tscn" id="11_4cess"]
+[ext_resource type="PackedScene" uid="uid://o715f2d768de" path="res://game_over_screen.tscn" id="11_vptw2"]
+[ext_resource type="Texture2D" uid="uid://ct6b28qvumapv" path="res://Menuscreen.png" id="12_a612q"]
+[ext_resource type="PackedScene" uid="uid://dwqgl6ed03jyb" path="res://mobile_controls.tscn" id="14_7bw3t"]
+[ext_resource type="PackedScene" uid="uid://dhbmxjoq6yihf" path="res://touch_screen_button.tscn" id="15_hme7x"]
 
 [node name="aasdasdasd" type="Node2D"]
+script = ExtResource("1_ehy7c")
+
+[node name="SlimeAngySound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_ql6sq")
+volume_db = -4.685
+max_polyphony = 3
+
+[node name="SlimeChargeSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_dvev2")
+volume_db = -5.622
+max_polyphony = 3
+
+[node name="Background" type="Sprite2D" parent="."]
+texture = ExtResource("10_hyugq")
+
+[node name="Campfire" parent="." instance=ExtResource("3_6x1rv")]
 
 [node name="Player" parent="." instance=ExtResource("1_plng0")]
-position = Vector2(-44, -64)
+position = Vector2(1, 27)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 process_callback = 0
 
-[node name="snake" parent="." instance=ExtResource("2_isnbl")]
-position = Vector2(115, -53)
-
-[node name="snake2" parent="." instance=ExtResource("2_isnbl")]
-position = Vector2(-126, 66)
-
-[node name="snake3" parent="." instance=ExtResource("2_isnbl")]
-position = Vector2(131, 64)
-
-[node name="snake4" parent="." instance=ExtResource("2_isnbl")]
-position = Vector2(-119, -54)
-
-[node name="Campfire" parent="." instance=ExtResource("3_6x1rv")]
-
 [node name="Wall" parent="." instance=ExtResource("4_l6vtk")]
-position = Vector2(0, 90)
-scale = Vector2(17.84, 1)
+position = Vector2(1, 112)
+scale = Vector2(17.84, 3.72)
+
+[node name="Wall5" parent="." instance=ExtResource("4_l6vtk")]
+position = Vector2(156, 85)
+rotation = -0.785397
+scale = Vector2(1.8788, 1.78696)
+
+[node name="Wall6" parent="." instance=ExtResource("4_l6vtk")]
+position = Vector2(153, -83)
+rotation = -0.785397
+scale = Vector2(1.8788, 1.78696)
+
+[node name="Wall7" parent="." instance=ExtResource("4_l6vtk")]
+position = Vector2(-156, -86)
+rotation = -0.785397
+scale = Vector2(1.8788, 1.78696)
+
+[node name="Wall8" parent="." instance=ExtResource("4_l6vtk")]
+position = Vector2(-154, 85)
+rotation = -0.785397
+scale = Vector2(1.8788, 1.78696)
 
 [node name="Wall2" parent="." instance=ExtResource("4_l6vtk")]
-position = Vector2(0, -90)
-scale = Vector2(17.84, 1)
+position = Vector2(-1, -144)
+scale = Vector2(18.0028, 6.60738)
+
+[node name="Wall9" parent="." instance=ExtResource("4_l6vtk")]
+position = Vector2(-1, -67)
+scale = Vector2(1.29161, 1)
 
 [node name="Wall3" parent="." instance=ExtResource("4_l6vtk")]
-position = Vector2(-160, 1)
-scale = Vector2(1, 11.2)
+position = Vector2(-195, 0)
+scale = Vector2(4.48, 11.2)
 
 [node name="Wall4" parent="." instance=ExtResource("4_l6vtk")]
-position = Vector2(160, 0)
-scale = Vector2(1, 11.2)
+position = Vector2(186, 0)
+scale = Vector2(3.48, 11.2)
 
-[node name="Fence" type="Sprite2D" parent="."]
-texture = ExtResource("5_yjy37")
+[node name="EnemyWall" parent="." instance=ExtResource("6_k3g5g")]
+position = Vector2(0, 79)
+scale = Vector2(15.28, 1)
+
+[node name="EnemyWall2" parent="." instance=ExtResource("6_k3g5g")]
+position = Vector2(0, -83)
+scale = Vector2(15.28, 1)
+
+[node name="EnemyWall9" parent="." instance=ExtResource("6_k3g5g")]
+position = Vector2(-1, -70)
+scale = Vector2(1.55793, 1.55793)
+
+[node name="EnemyWall3" parent="." instance=ExtResource("6_k3g5g")]
+position = Vector2(-155, 9)
+scale = Vector2(1, 9.84)
+
+[node name="EnemyWall4" parent="." instance=ExtResource("6_k3g5g")]
+position = Vector2(155, 7)
+scale = Vector2(1, 9.84)
+
+[node name="EnemyWall5" parent="." instance=ExtResource("6_k3g5g")]
+position = Vector2(151, -80)
+rotation = 0.785397
+scale = Vector2(2.12982, 2.12982)
+
+[node name="EnemyWall6" parent="." instance=ExtResource("6_k3g5g")]
+position = Vector2(152, 83)
+rotation = 0.785397
+scale = Vector2(2.12982, 2.12982)
+
+[node name="EnemyWall7" parent="." instance=ExtResource("6_k3g5g")]
+position = Vector2(-150, 85)
+rotation = 0.785397
+scale = Vector2(2.12982, 2.12982)
+
+[node name="EnemyWall8" parent="." instance=ExtResource("6_k3g5g")]
+position = Vector2(-152, -80)
+rotation = 0.785397
+scale = Vector2(2.12982, 2.12982)
+
+[node name="Door" parent="." instance=ExtResource("7_bigac")]
+position = Vector2(0, -73)
+
+[node name="TextureProgressBar" parent="." instance=ExtResource("11_4cess")]
+visible = false
+offset_left = -100.0
+offset_top = 70.0
+offset_right = 100.0
+offset_bottom = 110.0
+
+[node name="Menuscreen" type="Sprite2D" parent="."]
+texture = ExtResource("12_a612q")
+
+[node name="Bat" parent="." instance=ExtResource("5_jrmwn")]
+position = Vector2(-100, 5)
+
+[node name="Bat2" parent="." instance=ExtResource("5_jrmwn")]
+position = Vector2(96, 4)
+
+[node name="GameOverScreen" parent="." node_paths=PackedStringArray("campfire") instance=ExtResource("11_vptw2")]
+visible = false
+campfire = NodePath("../Campfire")
+
+[node name="Restart" parent="GameOverScreen" instance=ExtResource("15_hme7x")]
+position = Vector2(107, -72)
+scale = Vector2(1.5625, 1.5625)
+
+[node name="MobileControls" parent="." instance=ExtResource("14_7bw3t")]
+
+[connection signal="run_mobile" from="MobileControls" to="Player" method="_on_mobile_controls_run_mobile"]
+[connection signal="spell_mobile" from="MobileControls" to="Player" method="_on_mobile_controls_spell_mobile"]
+[connection signal="use_move_vector" from="MobileControls" to="Player" method="_on_mobile_controls_use_move_vector"]

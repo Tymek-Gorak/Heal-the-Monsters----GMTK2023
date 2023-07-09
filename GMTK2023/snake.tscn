@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://difa5lfdvlmvr"]
+[gd_scene load_steps=26 format=3 uid="uid://difa5lfdvlmvr"]
 
 [ext_resource type="Texture2D" uid="uid://diqvgdg407u2m" path="res://icon.svg" id="1_bds5m"]
 [ext_resource type="Script" path="res://snake.gd" id="1_xbwgh"]
@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://nak7xc8px1ct" path="res://SnakeWalk.png" id="4_8q4rt"]
 [ext_resource type="Texture2D" uid="uid://b3pb6js1u5pnk" path="res://SnakeIdleHealed.png" id="5_olouv"]
 [ext_resource type="Texture2D" uid="uid://u3l8kpm114xr" path="res://SnakeWalkHealed.png" id="6_uagrx"]
+[ext_resource type="AudioStream" uid="uid://dox8rmpkwievc" path="res://sounds/snake-hissing-6092.mp3" id="7_6pksj"]
+[ext_resource type="Texture2D" uid="uid://bdvrh8v34gk3e" path="res://HealingParticles.png" id="8_hc8bh"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xm6be"]
 atlas = ExtResource("1_bds5m")
@@ -137,9 +139,16 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_kb5qm"]
 radius = 6.08276
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_twx4l"]
+particles_animation = true
+particles_anim_h_frames = 3
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
 [node name="snake" type="CharacterBody2D" groups=["enemies"]]
 collision_layer = 2
-collision_mask = 8
+collision_mask = 44
+floor_snap_length = 0.0
 script = ExtResource("1_xbwgh")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -158,3 +167,22 @@ shape = SubResource("CircleShape2D_kb5qm")
 
 [node name="WanderTimer" type="Timer" parent="."]
 one_shot = true
+
+[node name="HissSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_6pksj")
+volume_db = 8.433
+
+[node name="HealingParticles" type="CPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_twx4l")
+emitting = false
+amount = 5
+one_shot = true
+explosiveness = 0.89
+randomness = 0.51
+texture = ExtResource("8_hc8bh")
+emission_shape = 3
+emission_rect_extents = Vector2(5, 8)
+gravity = Vector2(0, -4)
+color = Color(0.509804, 1, 0.415686, 1)
+anim_speed_min = 1.0
+anim_speed_max = 1.0

@@ -1,0 +1,69 @@
+[gd_scene load_steps=11 format=3 uid="uid://dwqgl6ed03jyb"]
+
+[ext_resource type="Script" path="res://mobile_controls.gd" id="1_7btnj"]
+[ext_resource type="Theme" uid="uid://kcyq8klsykxb" path="res://style_default.tres" id="2_2d1s3"]
+[ext_resource type="Texture2D" uid="uid://b324rkpw7inqp" path="res://sounds/PhoneControls.png" id="3_w6cw5"]
+[ext_resource type="AudioStream" uid="uid://bcma3kgrytibe" path="res://sounds/ButtonClick.wav" id="4_44cg8"]
+[ext_resource type="Texture2D" uid="uid://bcofjd8dnw2ki" path="res://sounds/JoystickHolder.png" id="4_xiiwo"]
+[ext_resource type="Texture2D" uid="uid://d0xs6x1g58cxw" path="res://sounds/JoystickUser.png" id="5_6ne6c"]
+[ext_resource type="Texture2D" uid="uid://cwhpr4qcogp20" path="res://sounds/SprintButton.png" id="6_mvyvh"]
+[ext_resource type="Texture2D" uid="uid://c58afbif407rs" path="res://sounds/SprintButtonPressed.png" id="7_nups2"]
+[ext_resource type="Texture2D" uid="uid://da6m35v75xief" path="res://sounds/WindSpellButton.png" id="8_1upv7"]
+[ext_resource type="Texture2D" uid="uid://d0kyn4sc3v0nj" path="res://sounds/WindSpellButtonPressed.png" id="9_f08hm"]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource("1_7btnj")
+
+[node name="EnableMobileControlsButton" type="Button" parent="."]
+offset_left = 286.0
+offset_top = 4.0
+offset_right = 311.0
+offset_bottom = 29.0
+focus_mode = 0
+theme = ExtResource("2_2d1s3")
+theme_override_colors/icon_normal_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_pressed_color = Color(0.839216, 0.839216, 0.839216, 1)
+icon = ExtResource("3_w6cw5")
+icon_alignment = 1
+expand_icon = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="EnableMobileControlsButton"]
+stream = ExtResource("4_44cg8")
+volume_db = 1.874
+pitch_scale = 0.86
+
+[node name="MobileButtons" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Joystick" type="TouchScreenButton" parent="MobileButtons"]
+position = Vector2(12, 106)
+scale = Vector2(2, 2)
+texture_normal = ExtResource("4_xiiwo")
+
+[node name="Sprite2D" type="Sprite2D" parent="MobileButtons/Joystick"]
+position = Vector2(15.5, 16)
+scale = Vector2(0.453125, 0.453125)
+texture = ExtResource("5_6ne6c")
+
+[node name="RunButton" type="TouchScreenButton" parent="MobileButtons"]
+position = Vector2(211, 123)
+scale = Vector2(1.305, 1.305)
+texture_normal = ExtResource("6_mvyvh")
+texture_pressed = ExtResource("7_nups2")
+passby_press = true
+
+[node name="SpellButton" type="TouchScreenButton" parent="MobileButtons"]
+position = Vector2(268, 123)
+scale = Vector2(1.305, 1.305)
+texture_normal = ExtResource("8_1upv7")
+texture_pressed = ExtResource("9_f08hm")
+passby_press = true
+
+[connection signal="pressed" from="EnableMobileControlsButton" to="." method="_on_enable_mobile_controls_button_pressed"]
+[connection signal="pressed" from="MobileButtons/RunButton" to="." method="_on_run_button_pressed"]
+[connection signal="released" from="MobileButtons/RunButton" to="." method="_on_run_button_released"]
+[connection signal="pressed" from="MobileButtons/SpellButton" to="." method="_on_spell_button_pressed"]

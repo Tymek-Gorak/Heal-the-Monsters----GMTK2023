@@ -1,0 +1,38 @@
+[gd_scene load_steps=3 format=3 uid="uid://o715f2d768de"]
+
+[ext_resource type="Texture2D" uid="uid://cba8jo64ohinc" path="res://BackgroundGame.png" id="1_3rr3s"]
+[ext_resource type="Script" path="res://game_over_screen.gd" id="2_33ymu"]
+
+[node name="GameOverScreen" type="Sprite2D"]
+top_level = true
+z_index = 5
+texture = ExtResource("1_3rr3s")
+script = ExtResource("2_33ymu")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+offset_left = -64.0
+offset_top = -38.0
+offset_right = 64.0
+offset_bottom = 2.0
+
+[node name="ScoreLabel" type="Label" parent="CenterContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.160156, 0.613281, 0.257813, 1)
+theme_override_font_sizes/font_size = 13
+text = "0000000"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CenterContainer2" type="CenterContainer" parent="."]
+offset_left = -64.0
+offset_top = 30.0
+offset_right = 64.0
+offset_bottom = 70.0
+
+[node name="HighScoreLabel" type="Label" parent="CenterContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.160156, 0.613281, 0.257813, 1)
+theme_override_font_sizes/font_size = 13
+text = "0000000"
+horizontal_alignment = 1
+vertical_alignment = 1

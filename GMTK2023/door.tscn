@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://ce4c4ytxfrldh"]
+
+[ext_resource type="Texture2D" uid="uid://cjxtlw6b1k7a2" path="res://door.png" id="1_p1w21"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wnh73"]
+atlas = ExtResource("1_p1w21")
+region = Rect2(10, 18, 44, 30)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nd4r4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wnh73")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Door" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_nd4r4")

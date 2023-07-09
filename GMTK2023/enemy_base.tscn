@@ -1,0 +1,48 @@
+[gd_scene load_steps=5 format=3 uid="uid://dexbaws3x2bb1"]
+
+[ext_resource type="Script" path="res://enemy_base.gd" id="1_0uxvg"]
+[ext_resource type="Texture2D" uid="uid://bdvrh8v34gk3e" path="res://HealingParticles.png" id="2_0dsoe"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_56fex"]
+radius = 6.08
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_kj3f2"]
+particles_animation = true
+particles_anim_h_frames = 3
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[node name="EnemyBase" type="CharacterBody2D" groups=["enemies"]]
+collision_layer = 2
+collision_mask = 44
+floor_stop_on_slope = false
+floor_block_on_wall = false
+floor_max_angle = 0.0
+floor_snap_length = 0.0
+script = ExtResource("1_0uxvg")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+
+[node name="AnimatedSprite2DHealed" type="AnimatedSprite2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_56fex")
+
+[node name="WanderTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="HealingParticles" type="CPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_kj3f2")
+emitting = false
+amount = 5
+one_shot = true
+explosiveness = 0.89
+randomness = 0.51
+texture = ExtResource("2_0dsoe")
+emission_shape = 3
+emission_rect_extents = Vector2(5, 8)
+gravity = Vector2(0, -4)
+color = Color(0.509804, 1, 0.415686, 1)
+anim_speed_min = 1.0
+anim_speed_max = 1.0

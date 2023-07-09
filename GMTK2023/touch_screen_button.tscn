@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://dhbmxjoq6yihf"]
+
+[ext_resource type="Texture2D" uid="uid://b3bgjwl5a0e25" path="res://sounds/Restartbutton.png" id="1_clroa"]
+[ext_resource type="Script" path="res://touch_screen_button.gd" id="1_ijgan"]
+[ext_resource type="Texture2D" uid="uid://csnqi415bjdoc" path="res://sounds/RestartbuttonPressed.png" id="2_ufkhk"]
+
+[node name="Restart" type="TouchScreenButton"]
+scale = Vector2(3.1875, 3.1875)
+texture_normal = ExtResource("1_clroa")
+texture_pressed = ExtResource("2_ufkhk")
+script = ExtResource("1_ijgan")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

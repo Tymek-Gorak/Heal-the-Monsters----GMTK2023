@@ -1,0 +1,94 @@
+[gd_scene load_steps=13 format=3 uid="uid://bku4akkrwirnp"]
+
+[ext_resource type="Script" path="res://player.gd" id="1_fdhjf"]
+[ext_resource type="Texture2D" uid="uid://du1o1k6sd6tf7" path="res://PlayerSprite.png" id="2_j60li"]
+[ext_resource type="Texture2D" uid="uid://3ywngbn58h1y" path="res://PlayerIdle.png" id="3_rrhgw"]
+[ext_resource type="Texture2D" uid="uid://cnalonkqk2pit" path="res://PlayerWalk.png" id="4_opkg8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4m2ut"]
+atlas = ExtResource("3_rrhgw")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lgekg"]
+atlas = ExtResource("3_rrhgw")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hlfqg"]
+atlas = ExtResource("4_opkg8")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5nagh"]
+atlas = ExtResource("4_opkg8")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y5ddk"]
+atlas = ExtResource("4_opkg8")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5mw7x"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_j60li")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4m2ut")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lgekg")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hlfqg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5nagh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y5ddk")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j65q3"]
+size = Vector2(6, 6)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ye66l"]
+radius = 55.0
+
+[node name="Player" type="CharacterBody2D"]
+collision_mask = 8
+script = ExtResource("1_fdhjf")
+SPEED = 1000.0
+MAX_SPEED_X = 150.0
+MAX_SPEED_Y = 120.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 10
+sprite_frames = SubResource("SpriteFrames_5mw7x")
+animation = &"walk"
+frame_progress = 0.767546
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_j65q3")
+
+[node name="NoiseArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NoiseArea"]
+shape = SubResource("CircleShape2D_ye66l")
+
+[connection signal="body_entered" from="NoiseArea" to="." method="_on_noise_area_body_entered"]
+[connection signal="body_exited" from="NoiseArea" to="." method="_on_noise_area_body_exited"]

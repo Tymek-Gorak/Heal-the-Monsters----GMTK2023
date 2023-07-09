@@ -1,0 +1,48 @@
+[gd_scene load_steps=8 format=3 uid="uid://cwaj725bdj5ld"]
+
+[ext_resource type="Script" path="res://wind_spell.gd" id="1_rprj0"]
+[ext_resource type="Texture2D" uid="uid://cd5fe0oed08cd" path="res://PlayerWindSpellEffect.png" id="2_8bped"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ta8h5"]
+resource_local_to_scene = true
+radius = 1.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tevlf"]
+atlas = ExtResource("2_8bped")
+region = Rect2(0, 0, 70, 70)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5m28s"]
+atlas = ExtResource("2_8bped")
+region = Rect2(70, 0, 70, 70)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_42gc7"]
+atlas = ExtResource("2_8bped")
+region = Rect2(140, 0, 70, 70)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0f75x"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tevlf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5m28s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_42gc7")
+}],
+"loop": false,
+"name": &"default",
+"speed": 15.0
+}]
+
+[node name="WindSpell" type="StaticBody2D"]
+collision_layer = 64
+collision_mask = 0
+script = ExtResource("1_rprj0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ta8h5")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_0f75x")
