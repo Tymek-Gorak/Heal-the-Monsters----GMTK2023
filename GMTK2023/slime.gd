@@ -31,6 +31,10 @@ func campfire_angy_sound():
 func campfire_charge_sound():
 	get_parent().slime_charge_sound_invoke()
 
+#func healed():
+#	super.healed()
+#	set_collision_mask_value(1, false)
+
 func _on_anger_detector_body_entered(body):
 	if not_moving == false:
 		not_moving = true
