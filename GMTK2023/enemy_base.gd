@@ -30,8 +30,8 @@ func _physics_process(delta):
 			move_vector = pick_wander_spot(delta)
 			unique_wander(move_vector)
 			
-	if move_and_slide():
-		unique_collision()
+		if move_and_slide():
+			unique_collision()
 
 func pick_wander_spot(delta):
 	if wander_timer.is_stopped():
@@ -50,7 +50,8 @@ func pick_wander_spot(delta):
 		
 	if move_toward(position.x, wander_spot.x, SPEED * delta) == position.x and move_toward(position.y, wander_spot.y, SPEED * delta) == position.y:
 		animated_sprite_2d.play("idle")
-	else:
+	else:	
+
 		animated_sprite_2d.play("walk")
 	return Vector2(move_toward_x, move_toward_y)
 	
@@ -66,7 +67,7 @@ func run_away(delta):
 		animated_sprite_2d.scale.x = -1
 	else:
 		animated_sprite_2d.scale.x = 1
-
+		
 	animated_sprite_2d.play("walk")
 	
 	return Vector2(move_toward_x, move_toward_y)

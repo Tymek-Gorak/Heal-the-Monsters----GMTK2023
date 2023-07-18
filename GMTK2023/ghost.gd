@@ -22,7 +22,7 @@ func run_away(delta):
 func teleport():
 	var teleport_location = Vector2(randf_range(-teleport_range.x, teleport_range.x), randf_range(-teleport_range.y, teleport_range.y))
 	if is_healed == false:
-		while abs(teleport_location.x) < 39 and abs(teleport_location.y) < 39:
+		while abs(teleport_location.x) < 45 and abs(teleport_location.y) < 42:
 			teleport_location = Vector2(randf_range(-teleport_range.x, teleport_range.x), randf_range(-teleport_range.y, teleport_range.y))
 	if randi_range(1, 24) == 1: moan_sound.play()
 	position = teleport_location

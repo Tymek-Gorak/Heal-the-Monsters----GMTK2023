@@ -42,10 +42,11 @@ func _process(delta):
 		if enemy_spawn_min_time > 1: enemy_spawn_min_time -= .2
 		elif enemy_spawn_min_time > .5: enemy_spawn_min_time -= .025
 		
-		if enemy_spawn_max_time > 2: enemy_spawn_max_time -= .3
-		elif enemy_spawn_max_time > 1.2: enemy_spawn_max_time -= .025
+		if enemy_spawn_max_time > 2: enemy_spawn_max_time -= .5
+		elif enemy_spawn_max_time > 1.2: enemy_spawn_max_time -= .015
 		
-		if bonus_time_earning > 1.5: bonus_time_earning -= .1
+		if bonus_time_earning > 2: bonus_time_earning -= .1
+		elif bonus_time_earning > 1.6: bonus_time_earning -= .0075
 		
 		if game_time_left.wait_time > 0.5: game_time_left.wait_time -= 0.025
 		spawn_enemy_timer.start()
@@ -121,14 +122,25 @@ func _process(delta):
 func _on_campfire_zone_body_entered(body):
 	if body.is_healed == false:
 		points += 1
-		if points == 2:
-			is_ticking = true
-			get_parent().start_game()
-			lobby_music_sound.stop()
-			battle_music_sound.play()
 		heal_sound.play()
 		Global.time_left_sec += bonus_time_earning
 		body.healed()
+		
+		if points == 2:
+			get_parent().start_game()
+			get_parent().spawn_enemy(1)
+			get_parent().spawn_enemy(3)
+			bonus_time_earning = 10
+		if points == 4:
+			get_parent().spawn_enemy(2)
+			get_parent().spawn_enemy(2)
+			
+		if points == 6:
+			bonus_time_earning = 5
+			get_parent().spawn_random_enemies = true
+			is_ticking = true
+			lobby_music_sound.stop()
+			battle_music_sound.play()
 
 
 func _on_game_time_left_timeout():

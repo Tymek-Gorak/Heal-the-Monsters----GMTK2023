@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://c6wudh5nsam1v"]
+[gd_scene load_steps=17 format=3 uid="uid://c6wudh5nsam1v"]
 
 [ext_resource type="Script" path="res://aasdasdasd.gd" id="1_ehy7c"]
 [ext_resource type="PackedScene" uid="uid://bku4akkrwirnp" path="res://player.tscn" id="1_plng0"]
@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://ct6b28qvumapv" path="res://Menuscreen.png" id="12_a612q"]
 [ext_resource type="PackedScene" uid="uid://dwqgl6ed03jyb" path="res://mobile_controls.tscn" id="14_7bw3t"]
 [ext_resource type="PackedScene" uid="uid://dhbmxjoq6yihf" path="res://touch_screen_button.tscn" id="15_hme7x"]
+[ext_resource type="PackedScene" uid="uid://b0p6jp8e85i6k" path="res://ghost.tscn" id="16_qjt5d"]
 
 [node name="aasdasdasd" type="Node2D"]
 script = ExtResource("1_ehy7c")
@@ -133,12 +134,6 @@ offset_bottom = 110.0
 [node name="Menuscreen" type="Sprite2D" parent="."]
 texture = ExtResource("12_a612q")
 
-[node name="Bat" parent="." instance=ExtResource("5_jrmwn")]
-position = Vector2(-100, 5)
-
-[node name="Bat2" parent="." instance=ExtResource("5_jrmwn")]
-position = Vector2(96, 4)
-
 [node name="GameOverScreen" parent="." node_paths=PackedStringArray("campfire") instance=ExtResource("11_vptw2")]
 visible = false
 campfire = NodePath("../Campfire")
@@ -148,6 +143,12 @@ position = Vector2(107, -72)
 scale = Vector2(1.5625, 1.5625)
 
 [node name="MobileControls" parent="." instance=ExtResource("14_7bw3t")]
+
+[node name="Ghost" parent="." instance=ExtResource("16_qjt5d")]
+position = Vector2(108, 0)
+
+[node name="Bat" parent="." instance=ExtResource("5_jrmwn")]
+position = Vector2(-103, 3)
 
 [connection signal="run_mobile" from="MobileControls" to="Player" method="_on_mobile_controls_run_mobile"]
 [connection signal="spell_mobile" from="MobileControls" to="Player" method="_on_mobile_controls_spell_mobile"]

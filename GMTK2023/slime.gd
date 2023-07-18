@@ -13,6 +13,7 @@ func unique_run(move_vector):
 	unique_wander(move_vector2)
 
 func dash():
+	if player_saved == null: player_saved = Global.player_instance
 	var direction_to_player = self.position.direction_to(player_saved.position)
 	velocity = direction_to_player * SPEED * 20
 	await get_tree().create_timer(.2).timeout
@@ -24,6 +25,7 @@ func unique_collision():
 	if randi_range(1, 120) == 10: collision_sound.play()
 	cpu_particles_2d.emitting = false
 	velocity = Vector2.ZERO
+	if is_healed == false: starting_position = position
 
 func campfire_angy_sound():
 	get_parent().slime_angy_sound_invoke()
@@ -36,8 +38,9 @@ func campfire_charge_sound():
 #	set_collision_mask_value(1, false)
 
 func _on_anger_detector_body_entered(body):
-	if not_moving == false:
+	if not_moving == false and is_healed == false:
 		not_moving = true
 		dash_animation.play("angy")
+		
 	
 

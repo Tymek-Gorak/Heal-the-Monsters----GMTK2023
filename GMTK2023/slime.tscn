@@ -274,7 +274,7 @@ resource_name = "angy"
 length = 1.2
 tracks/0/type = "value"
 tracks/0/imported = false
-tracks/0/enabled = true
+tracks/0/enabled = false
 tracks/0/path = NodePath("AnimatedSprite2D:animation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
@@ -286,7 +286,7 @@ tracks/0/keys = {
 }
 tracks/1/type = "value"
 tracks/1/imported = false
-tracks/1/enabled = true
+tracks/1/enabled = false
 tracks/1/path = NodePath("AnimatedSprite2D:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
@@ -318,7 +318,7 @@ tracks/2/keys = {
 }
 tracks/3/type = "value"
 tracks/3/imported = false
-tracks/3/enabled = true
+tracks/3/enabled = false
 tracks/3/path = NodePath("AnimatedSprite2DHealed:animation")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
@@ -330,7 +330,7 @@ tracks/3/keys = {
 }
 tracks/4/type = "value"
 tracks/4/imported = false
-tracks/4/enabled = true
+tracks/4/enabled = false
 tracks/4/path = NodePath("AnimatedSprite2DHealed:frame")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
@@ -351,6 +351,40 @@ tracks/5/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
+}
+tracks/6/type = "method"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("AnimatedSprite2D")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 1.2),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [&"angy"],
+"method": &"play"
+}, {
+"args": [&"angy"],
+"method": &"play"
+}]
+}
+tracks/7/type = "method"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("AnimatedSprite2DHealed")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 1.2),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [&"angy"],
+"method": &"play"
+}, {
+"args": [&"angy"],
+"method": &"play"
+}]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ke88j"]
@@ -386,9 +420,6 @@ animation = &"angy"
 visible = false
 sprite_frames = SubResource("SpriteFrames_ni0g5")
 animation = &"angy"
-
-[node name="CollisionShape2D" parent="." index="3"]
-visible = false
 
 [node name="AngerDetector" type="Area2D" parent="." index="5"]
 visible = false

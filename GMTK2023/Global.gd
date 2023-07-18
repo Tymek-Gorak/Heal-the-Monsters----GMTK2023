@@ -5,7 +5,7 @@ static var highscore = 0
 var is_game_lost = false
 var is_on_mobile = false
 		
-
+var player_instance
 
 func _process(delta):
 	if is_game_lost == false:

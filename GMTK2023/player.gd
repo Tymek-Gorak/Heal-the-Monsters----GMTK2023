@@ -16,6 +16,9 @@ extends CharacterBody2D
 
 var is_casting_spell = false
 
+func _ready():
+	Global.player_instance = self
+
 func _physics_process(delta):
 	var directionx = Input.get_axis("left", "right")
 	var directiony = Input.get_axis("down", "up")
@@ -61,7 +64,6 @@ func handle_movement(delta, move_vector):
 		velocity.y = move_toward(velocity.y, 0, SPEED * delta)
 
 func handle_sneaking(is_sneaking):
-	print(is_sneaking)
 	if is_sneaking:
 		noise_area_collision_shape.shape.radius = 40
 		MAX_SPEED_X = 200
